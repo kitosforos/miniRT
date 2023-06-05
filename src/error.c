@@ -6,7 +6,7 @@
 /*   By: maralons <maralons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:10:02 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/05 14:18:45 by maralons         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:28:50 by maralons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	exit_use(void)
 
 void	check_file(char *filename)
 {
+	int		fd;
+
 	check_name(filename);
+	fd = open(filename, O_RDONLY);
 }
 
 void	check_name(char *filename)
