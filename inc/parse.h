@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 13:44:22 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/05 14:41:05 by dcruz-na         ###   ########.fr       */
+/*   Created: 2023/06/05 14:35:56 by dcruz-na          #+#    #+#             */
+/*   Updated: 2023/06/05 14:44:22 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "error.h"
+#ifndef PARSE_H
+# define PARSE_H
 
-int	main(int argc, char **argv)
-{
-	char	*filename;
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include "rt.h"
 
-	if (argc != 2)
-		return (exit_use());
-	ft_strcpy(filename, argv[1]);
-	check_file(filename);
-	parse_file(filename);
-	return (0);
-}
+void	parse_file(char *filename);
+
+#endif
