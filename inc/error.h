@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maralons <maralons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 13:44:22 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/05 14:16:13 by maralons         ###   ########.fr       */
+/*   Created: 2023/06/05 14:11:38 by maralons          #+#    #+#             */
+/*   Updated: 2023/06/05 14:18:50 by maralons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include "error.h"
+#ifndef ERROR_H
+# define ERROR_H
 
-int main(int argc, char **argv)
-{
-	char	*filename;
+int		exit_use(void);
+void	check_file(char *filename);
+void	check_name(char *filename);
 
-	if (argc != 2)
-		return (exit_use());
-	strcpy(filename, argv[1]);
-	check_file(filename);
-	return (0);
-}
+#endif

@@ -6,12 +6,16 @@
 /*   By: maralons <maralons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 13:44:43 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/05 13:53:39 by maralons         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:14:33 by maralons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
 # define MAIN_H
+
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
 
 typedef struct s_coord
 {
@@ -74,9 +78,9 @@ typedef struct s_program
 {
 	t_amblight	amblight;
 	t_camera	camera;
-	t_light		light;
-	t_sphere	*sphere;
-	t_plane		*plane;
-	t_cylinder	*cylinder;
+	t_sphere	spheres[100];
+	t_plane		planes[100];
+	t_cylinder	cylinders[100];
+	t_light		lights[100];
 }				t_program;
 #endif

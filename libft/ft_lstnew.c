@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maralons <maralons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 13:44:22 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/05 14:16:13 by maralons         ###   ########.fr       */
+/*   Created: 2022/03/26 13:01:36 by danicn            #+#    #+#             */
+/*   Updated: 2022/03/27 17:33:32 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include "error.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+t_list	*ft_lstnew(void *content)
 {
-	char	*filename;
+	t_list	*list;
 
-	if (argc != 2)
-		return (exit_use());
-	strcpy(filename, argv[1]);
-	check_file(filename);
-	return (0);
+	list = (t_list *)malloc(sizeof(t_list));
+	if (!list)
+		return (NULL);
+	list->content = content;
+	list->next = NULL;
+	return (list);
 }

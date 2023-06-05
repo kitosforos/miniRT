@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maralons <maralons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 13:44:22 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/05 14:16:13 by maralons         ###   ########.fr       */
+/*   Created: 2022/03/21 18:53:04 by dcruz-na          #+#    #+#             */
+/*   Updated: 2022/03/27 20:40:15 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include "error.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+int	ft_isascii(int c)
 {
-	char	*filename;
+	int	i;
 
-	if (argc != 2)
-		return (exit_use());
-	strcpy(filename, argv[1]);
-	check_file(filename);
-	return (0);
+	i = 0;
+	if (c >= 0 && c <= 127)
+		i++;
+	return (i);
 }

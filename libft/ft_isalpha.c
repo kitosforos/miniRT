@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maralons <maralons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 13:44:22 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/05 14:16:13 by maralons         ###   ########.fr       */
+/*   Created: 2022/03/21 18:33:50 by dcruz-na          #+#    #+#             */
+/*   Updated: 2022/03/27 20:39:00 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-#include "error.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+int	ft_isalpha(int c)
 {
-	char	*filename;
-
-	if (argc != 2)
-		return (exit_use());
-	strcpy(filename, argv[1]);
-	check_file(filename);
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+	{
+		return (1);
+	}
 	return (0);
 }
