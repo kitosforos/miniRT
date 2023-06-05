@@ -6,7 +6,7 @@
 /*   By: maralons <maralons@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 13:44:43 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/05 13:52:20 by maralons         ###   ########.fr       */
+/*   Updated: 2023/06/05 13:53:39 by maralons         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,13 @@ typedef struct s_cylinder
 	t_color	color;
 }				t_cylinder;
 
+typedef struct s_program
+{
+	t_amblight	amblight;
+	t_camera	camera;
+	t_light		light;
+	t_sphere	*sphere;
+	t_plane		*plane;
+	t_cylinder	*cylinder;
+}				t_program;
 #endif
