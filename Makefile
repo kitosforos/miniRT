@@ -3,7 +3,7 @@ LEAKS = -fsanitize=address -g3
 LIBFT = libft/libft.a
 SRCS = 
 INC = -IUsers/${USER}/.brew/opt/readline/include -Iinc -Ilibft
-LIB = -L/Users/${USER}/.brew/opt/readline/lib -lreadline
+LIB = -L/Users/${USER}/.brew/opt/readline/lib -lreadline -lmath -lm
 OBJS = $(patsubst src/%, obj/%, $(SRCS:.c=.o))
 CFLAGS = -Wall -Wextra -Werror -g
 CC = gcc

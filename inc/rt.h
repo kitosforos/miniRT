@@ -6,7 +6,7 @@
 /*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 13:44:43 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/05 14:38:12 by dcruz-na         ###   ########.fr       */
+/*   Updated: 2023/06/07 13:14:22 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,16 @@ typedef struct s_program
 	t_plane		planes[100];
 	t_cylinder	cylinders[100];
 	t_light		lights[100];
+	int			nb[4];
 }				t_program;
+
+enum {
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	LIGHT,
+	AMB_LIGHT,
+	CAMERA
+};
+
 #endif

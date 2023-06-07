@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maralons <maralons@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:10:02 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/05 14:18:45 by maralons         ###   ########.fr       */
+/*   Updated: 2023/06/07 13:08:16 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,20 @@ int	exit_use(void)
 	return (1);
 }
 
-void	check_file(char *filename)
+int	check_file(char *filename)
 {
-	check_name(filename);
+	if (check_name(filename) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
-void	check_name(char *filename)
+int	check_name(char *filename)
 {
 	if (filename[strlen(filename) - 1] != 't'
 		|| filename[strlen(filename) - 2] != 'r'
 		|| filename[strlen(filename) - 3] != '.')
 	{
 		printf("Invalid file.\n");
-		exit(1);
+		return (EXIT_FAILURE);
 	}
 }

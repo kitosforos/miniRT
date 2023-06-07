@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 14:11:38 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/07 13:08:07 by dcruz-na         ###   ########.fr       */
+/*   Created: 2023/06/07 14:11:38 by dcruz-na          #+#    #+#             */
+/*   Updated: 2023/06/07 14:23:14 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef UTILS_H
+# define UTILS_H
 
-# include <stdio.h>
+# include <unistd.h>
 # include <stdlib.h>
+# include <math.h>
+# include "rt.h"
 
-int		exit_use(void);
-int		check_file(char *filename);
-int		check_name(char *filename);
-
+double	ft_atof(char *str);
+t_color	ft_color_atoi(char *str);
+t_coord	ft_coord_atoi(char *str);
 #endif
