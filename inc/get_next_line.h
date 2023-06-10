@@ -6,7 +6,7 @@
 /*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:24:23 by dcruz-na          #+#    #+#             */
-/*   Updated: 2022/04/18 18:20:11 by dcruz-na         ###   ########.fr       */
+/*   Updated: 2023/06/10 18:33:55 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,15 @@
 # include <sys/uio.h>
 # include <fcntl.h>
 
+# ifndef LIBFT_H
+
 typedef struct s_list
 {
 	char			*content;
 	struct s_list	*next;
 }				t_list;
+
+# endif
 
 void	read_into_list(int fd, t_list **list);
 char	*get_next_line(int fd);

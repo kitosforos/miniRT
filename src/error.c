@@ -6,7 +6,7 @@
 /*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:10:02 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/07 13:08:16 by dcruz-na         ###   ########.fr       */
+/*   Updated: 2023/06/10 18:07:21 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ int	check_file(char *filename)
 
 int	check_name(char *filename)
 {
-	if (filename[strlen(filename) - 1] != 't'
-		|| filename[strlen(filename) - 2] != 'r'
-		|| filename[strlen(filename) - 3] != '.')
+	if (filename[ft_strlen(filename) - 1] != 't'
+		|| filename[ft_strlen(filename) - 2] != 'r'
+		|| filename[ft_strlen(filename) - 3] != '.')
 	{
 		printf("Invalid file.\n");
 		return (EXIT_FAILURE);
 	}
+	return (EXIT_SUCCESS);
 }

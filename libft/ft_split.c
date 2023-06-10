@@ -6,7 +6,7 @@
 /*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:03:08 by danicn            #+#    #+#             */
-/*   Updated: 2022/04/01 20:41:36 by dcruz-na         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:47:10 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	declar(int *i, int *j, int *k)
 
 static void	init(char *s, int *j, int *k, char c)
 {
-	while ((char)(s[*j]) == c)
+	while ((char)(s[*j]) == c || s[*j] == 9)
 		*k = ++(*j);
-	while ((char)(s[*j]) != c && s[*j])
+	while ((char)(s[*j]) != c && s[*j] != 9 && s[*j])
 		(*j)++;
 }
 
@@ -49,12 +49,12 @@ static int	counting_words(const char *str, char c)
 	trigger = 0;
 	while (*str)
 	{
-		if (*str != c && trigger == 0)
+		if (*str != c && *str != 9 && trigger == 0)
 		{
 			trigger = 1;
 			i++;
 		}
-		else if (*str == c)
+		else if (*str == c || *str == 9)
 			trigger = 0;
 		str++;
 	}

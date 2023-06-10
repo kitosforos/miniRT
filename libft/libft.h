@@ -6,7 +6,7 @@
 /*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:57:18 by dcruz-na          #+#    #+#             */
-/*   Updated: 2022/04/01 18:36:38 by dcruz-na         ###   ########.fr       */
+/*   Updated: 2023/06/10 18:31:59 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@
 # include <unistd.h>
 # include <string.h>
 
+# ifndef GET_NEXT_LINE_H
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-
+# endif
 int				ft_lstsize(t_list *lst);
 t_list			*ft_lstmap(t_list *u, void *(*f)(void *), void (*del)(void *));
 t_list			*ft_lstnew(void *content);

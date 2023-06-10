@@ -6,7 +6,7 @@
 /*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:35:56 by dcruz-na          #+#    #+#             */
-/*   Updated: 2023/06/07 14:19:45 by dcruz-na         ###   ########.fr       */
+/*   Updated: 2023/06/10 18:25:42 by dcruz-na         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include "rt.h"
 # include "utils.h"
+# include "get_next_line.h"
 
 int	parse_file(char *filename, t_program *program);
 

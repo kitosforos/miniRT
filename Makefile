@@ -1,9 +1,9 @@
 NAME = miniRT
 LEAKS = -fsanitize=address -g3
 LIBFT = libft/libft.a
-SRCS = 
+SRCS = src/error.c src/main.c src/parse.c src/get_next_line.c src/get_next_line_utils.c src/utils.c
 INC = -IUsers/${USER}/.brew/opt/readline/include -Iinc -Ilibft
-LIB = -L/Users/${USER}/.brew/opt/readline/lib -lreadline -lmath -lm
+LIB = -L/Users/${USER}/.brew/opt/readline/lib -lreadline -lm
 OBJS = $(patsubst src/%, obj/%, $(SRCS:.c=.o))
 CFLAGS = -Wall -Wextra -Werror -g
 CC = gcc
