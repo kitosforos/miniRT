@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
+/*   paint.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danicn <danicn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 14:35:56 by dcruz-na          #+#    #+#             */
-/*   Updated: 2023/06/11 12:42:25 by danicn           ###   ########.fr       */
+/*   Created: 2023/06/07 14:12:24 by dcruz-na          #+#    #+#             */
+/*   Updated: 2023/06/23 19:24:28 by danicn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#ifndef PAINT_H
+# define PAINT_H
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include "rt.h"
-# include "utils.h"
-# include "get_next_line.h"
-int	line_errors(char **str);
+# define RES_WIDTH 1920
+# define RES_HEIGHT 1080
 
-int	parse_file(char *filename, t_program *program);
+#include "mlx.h"
+
+typedef struct	s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+int paint();
 
 #endif
+

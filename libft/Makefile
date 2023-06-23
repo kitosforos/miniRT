@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+         #
+#    By: danicn <danicn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/07 11:05:52 by rchallie          #+#    #+#              #
-#    Updated: 2022/04/03 21:12:05 by dcruz-na         ###   ########.fr        #
+#    Updated: 2023/06/23 19:48:00 by danicn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,26 +73,26 @@ CFLAGS = -Wall -Wextra -Werror
 $(NAME): $(S_NAME)
 
 $(S_NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	rm -f $(B_NAME)
-	touch $(S_NAME)
+	@ar rc $(NAME) $(OBJS)
+	@rm -f $(B_NAME)
+	@touch $(S_NAME)
 	@echo "Libft ready !"
 
 all: $(NAME)
 
 clean:
-	rm -rf $(OBJSB)
+	@rm -rf $(OBJSB)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
 bonus: $(B_NAME)
 	
 $(B_NAME): $(OBJSB)
-	ar rcs $(NAME) $(OBJSB)
-	rm -f $(S_NAME)
-	touch $(B_NAME)
+	@ar rcs $(NAME) $(OBJSB)
+	@rm -f $(S_NAME)
+	@touch $(B_NAME)
 	@echo "Libft Bonus ready !"
 
