@@ -1,7 +1,7 @@
 NAME = miniRT
 LEAKS = -fsanitize=address -g3
 LIBFT = libft/libft.a
-SRCS = src/error.c src/main.c src/parse.c src/get_next_line.c src/get_next_line_utils.c src/utils.c src/paint.c
+SRCS = src/error.c src/main.c src/parse.c src/get_next_line.c src/get_next_line_utils.c src/utils.c src/paint.c src/operations.c
 INC = -Iinc -Ilibft -Imlx_linux -O3
 LIB = -Llibft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 OBJS = $(patsubst src/%, obj/%, $(SRCS:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: danicn <danicn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 14:12:24 by dcruz-na          #+#    #+#             */
-/*   Updated: 2023/06/23 19:24:28 by danicn           ###   ########.fr       */
+/*   Updated: 2023/07/04 13:09:19 by danicn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # define RES_WIDTH 1920
 # define RES_HEIGHT 1080
-
+# define ESC_KEY 65307
 #include "mlx.h"
+#include "rt.h"
 
 typedef struct	s_data
 {
@@ -27,7 +28,7 @@ typedef struct	s_data
 	int		endian;
 }				t_data;
 
-int paint();
+int paint(t_program *program);
 
 #endif
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcruz-na <dcruz-na@student.42.fr>          +#+  +:+       +#+        */
+/*   By: danicn <danicn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 13:44:43 by maralons          #+#    #+#             */
-/*   Updated: 2023/06/10 18:25:29 by dcruz-na         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:46:22 by danicn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef struct s_coord
 	double	y;
 	double	z;
 }				t_coord;
+
+typedef struct s_ray
+{
+	t_coord origin;
+	t_coord direction;
+}				t_ray;
 
 typedef struct s_color
 {
@@ -94,5 +100,16 @@ enum {
 	AMB_LIGHT,
 	CAMERA
 };
+
+t_coord suma_vect(t_coord vec1, t_coord vec2);
+t_coord resta_vect(t_coord vec1, t_coord vec2);
+t_coord div_vect(t_coord vec1, double d);
+t_coord prod_vect(t_coord vec1, double d);
+t_coord new_coord(double x, double y, double z);
+t_color new_color(int r, int g, int b);
+t_coord unit_vector(t_coord vec);
+double dot(const t_coord u, const t_coord v);
+double	hit_sphere(const t_coord center, double radius, const t_ray r);
+t_coord t_f(t_ray ray, double t);
 
 #endif
