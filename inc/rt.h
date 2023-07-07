@@ -6,7 +6,7 @@
 /*   By: danicn <danicn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 13:44:43 by maralons          #+#    #+#             */
-/*   Updated: 2023/07/04 13:46:22 by danicn           ###   ########.fr       */
+/*   Updated: 2023/07/07 18:03:31 by danicn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,29 @@ typedef struct s_program
 	int			nb[4];
 }				t_program;
 
+typedef struct s_hit_record {
+    t_coord	p;
+    t_coord	normal;
+    double	t;
+	int		front_face;
+	t_color	color;
+	t_coord	origin;
+}				t_hit_record;
+
+typedef struct	s_hittables {
+	t_sphere	*spheres[100];
+	int			n_spheres;
+}				t_hittables;
+
+typedef struct	s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
 enum {
 	SPHERE,
 	PLANE,
@@ -100,7 +123,6 @@ enum {
 	AMB_LIGHT,
 	CAMERA
 };
-
 t_coord suma_vect(t_coord vec1, t_coord vec2);
 t_coord resta_vect(t_coord vec1, t_coord vec2);
 t_coord div_vect(t_coord vec1, double d);
@@ -109,7 +131,13 @@ t_coord new_coord(double x, double y, double z);
 t_color new_color(int r, int g, int b);
 t_coord unit_vector(t_coord vec);
 double dot(const t_coord u, const t_coord v);
-double	hit_sphere(const t_coord center, double radius, const t_ray r);
 t_coord t_f(t_ray ray, double t);
+double length_squared(t_coord e);
+void set_face_normal(const t_ray r, const t_coord outward_normal, t_hit_record *rec);
+int sphere_hit(const t_ray r, double t_min, double t_max, t_hit_record *rec, t_sphere sphere);
+int	hit(t_hittables *t, t_ray r, double t_min, double t_max, t_hit_record *rec);
+void    add_sphere(t_hittables *world, t_sphere *sphere);
+void write_color(t_data *data, t_color pixel_color, int i, int j, int samples_per_pixel);
+double randomize();
 
 #endif

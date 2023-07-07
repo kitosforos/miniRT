@@ -6,11 +6,13 @@
 /*   By: danicn <danicn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 14:12:24 by dcruz-na          #+#    #+#             */
-/*   Updated: 2023/07/05 18:39:12 by danicn           ###   ########.fr       */
+/*   Updated: 2023/07/07 18:02:23 by danicn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <time.h>
+#include <stdlib.h>
 #include "rt.h"
 
 t_coord suma_vect(t_coord vec1, t_coord vec2)
@@ -100,22 +102,64 @@ t_coord	cross(const t_coord u, const t_coord v)
                 u.x * v.y - u.y * v.x);
 }
 
-double	hit_sphere(const t_coord center, double radius, const t_ray r)
+double length_squared(t_coord e)
 {
-    t_coord oc = resta_vect(r.origin, center);
+    return e.x*e.x + e.y*e.y + e.z*e.z;
+}
+
+double randomize() {
+    return rand() / (RAND_MAX + 1.0);
+}
+
+double random_double(double min, double max) {
+    // Returns a random real in [min,max).
+    return min + (max-min)*randomize();
+}
+
+double  clamp(double x, double min, double max)
+{
+    if (x < min ) return min;
+    if (x > max ) return max;
+    return x;
+}
+
+
+int sphere_hit(const t_ray r, double t_min, double t_max, t_hit_record *rec, t_sphere sphere)  {
+    t_coord oc = resta_vect(r.origin, sphere.coord);
     double a = dot(r.direction, r.direction);
     double b = dot(oc, r.direction);
-    double c = dot(oc, oc) - radius*radius;
+    double c = dot(oc, oc) - (sphere.diametre / 2) * (sphere.diametre / 2);
     double discriminant = b*b - a*c;
     
-    if (discriminant < 0) {
+    if (discriminant < 0)
         return -1.0;
-    } else {
-        return (b - sqrt(discriminant) ) / a;
-    }	
-        
-    
+    double sqrtd = sqrt(discriminant);
+
+    // Find the nearest root that lies in the acceptable range.
+    double root = (b - sqrtd) / a;
+    if (root < t_min || t_max < root) {
+        root = (b + sqrtd) / a;
+        if (root < t_min || t_max < root)
+            return (0);
+    }
+    rec->origin = sphere.coord;
+    rec->t = root;
+    rec->p = t_f(r, rec->t);
+    t_coord outward_normal = div_vect((resta_vect(rec->p, sphere.coord)), (sphere.diametre / 2));
+    set_face_normal(r, outward_normal, rec);
+    return (1);
 }
+
+
+void    add_sphere(t_hittables *world, t_sphere *sphere)
+{
+    world->spheres[world->n_spheres++] = sphere;
+}
+
+void set_face_normal(const t_ray r, const t_coord outward_normal, t_hit_record *rec) {
+        rec->front_face = dot(r.direction, outward_normal) < 0;
+        rec->normal = rec->front_face ? outward_normal : prod_vect(outward_normal, -1);
+    }
 
 t_coord t_f(t_ray ray, double t)
 {
