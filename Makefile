@@ -18,7 +18,7 @@ $(LIBFT):
 all: $(NAME)
 
 obj/%.o: src/%.c
-		@$(CC) $(CFLAGS) -c -g $< -o $@ $(INC)
+		@$(CC) $(CFLAGS) -c -g $< -o $@ $(INC) $(LIB)
 
 clean:
 		@rm -f obj/*.o

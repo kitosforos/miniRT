@@ -6,7 +6,7 @@
 /*   By: danicn <danicn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 14:12:24 by dcruz-na          #+#    #+#             */
-/*   Updated: 2023/07/07 18:02:23 by danicn           ###   ########.fr       */
+/*   Updated: 2023/07/08 14:40:48 by danicn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,22 +123,35 @@ double  clamp(double x, double min, double max)
     return x;
 }
 
+t_coord random_unit_vector() {
+    return unit_vector(random_in_unit_sphere());
+}
+
+t_coord random_in_unit_sphere()
+{
+    t_coord p = new_coord(random_double(-1,1), random_double(-1,1), random_double(-1,1));
+    
+    while (length_squared(p) >= 1) {
+        p = new_coord(random_double(-1,1), random_double(-1,1), random_double(-1,1));
+    }
+    return (p);
+}
 
 int sphere_hit(const t_ray r, double t_min, double t_max, t_hit_record *rec, t_sphere sphere)  {
-    t_coord oc = resta_vect(r.origin, sphere.coord);
+    t_coord oc = resta_vect(sphere.coord, r.origin);
     double a = dot(r.direction, r.direction);
     double b = dot(oc, r.direction);
     double c = dot(oc, oc) - (sphere.diametre / 2) * (sphere.diametre / 2);
     double discriminant = b*b - a*c;
     
     if (discriminant < 0)
-        return -1.0;
+        return 0;
     double sqrtd = sqrt(discriminant);
 
     // Find the nearest root that lies in the acceptable range.
-    double root = (b - sqrtd) / a;
+    double root = (-b - sqrtd) / a;
     if (root < t_min || t_max < root) {
-        root = (b + sqrtd) / a;
+        root = (-b + sqrtd) / a;
         if (root < t_min || t_max < root)
             return (0);
     }

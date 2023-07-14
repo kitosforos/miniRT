@@ -6,7 +6,7 @@
 /*   By: danicn <danicn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 14:12:24 by dcruz-na          #+#    #+#             */
-/*   Updated: 2023/07/07 18:13:11 by danicn           ###   ########.fr       */
+/*   Updated: 2023/07/08 13:15:50 by danicn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <float.h>
 #include <unistd.h>
+#include <math.h>
 #include "paint.h"
 #include "rt.h"
 
@@ -26,15 +27,25 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-t_color	ray_color(t_ray ray, t_hittables *h)
+t_color	ray_color(t_ray ray, t_hittables *h, int depth)
 {
 	double			t;
 	t_hit_record	rec;
 	t_coord			unt;
+	t_coord			target;
+	t_color			col;
+	t_ray			n_ray;
 	
-	if (hit(h, ray, 0, DBL_MAX, &rec)) {
-		unt = unit_vector(rec.normal);
-		return (new_color((0.5 * (unt.x + 1)) * 255, (0.5 * (unt.y + 1)) * 255, (0.5 * (unt.z + 1)) * 255));;
+	if (depth <= 0)
+		return (new_color(0, 0, 0));
+
+	if (hit(h, ray, 0.001, DBL_MAX, &rec)) {
+		
+		target = suma_vect(suma_vect(rec.p, rec.normal), random_unit_vector());
+		n_ray.origin = rec.p;
+		n_ray.direction = resta_vect(target, rec.p);
+		col = ray_color(n_ray, h, depth-1);
+		return (new_color((0.5 * (col.r)), (0.5 * (col.b)), (0.5 * (col.g))));
 	}
 	unt = unit_vector(ray.direction);
 	t = 0.5*(unt.y+1.0);
@@ -72,11 +83,11 @@ void write_color(t_data *data, t_color col, int i, int j, int samples_per_pixel)
 
     // Divide the color by the number of samples.
     double scale = 1.0 / samples_per_pixel;
-    r *= scale;
-    g *= scale;
-    b *= scale;
-
-	my_mlx_pixel_put(data, i, j, (r << 16) | (g << 8) | (	b));
+    r = scale * (unsigned int)r;
+    g = scale * (unsigned int)g;
+    b = scale * (unsigned int)b;
+	
+	my_mlx_pixel_put(data, i, j, ((int)(clamp((double)r, 0.0, 255.0)) << 16) | (((int)clamp((double)g, 0.0, 255.0) << 8)) | ((int)clamp((double)b,0.0, 255.0)));
 	
 }
 
@@ -120,7 +131,7 @@ int	paint_objects(t_data *data, t_program *program)
 				v = ((double)j + randomize()) / (RES_HEIGHT - 1);
 				ray.origin = new_coord(0,0,0);
 				ray.direction = suma_vect(suma_vect(lower_left_corner, prod_vect(horizontal, u)), resta_vect(prod_vect(vertical, v), new_coord(0,0,0)));
-				col = ray_color(ray, &world);
+				col = ray_color(ray, &world, 10);
 				pixel_col.r += col.r;
 				pixel_col.g += col.g;
 				pixel_col.b += col.b;

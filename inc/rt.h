@@ -6,7 +6,7 @@
 /*   By: danicn <danicn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 13:44:43 by maralons          #+#    #+#             */
-/*   Updated: 2023/07/07 18:03:31 by danicn           ###   ########.fr       */
+/*   Updated: 2023/07/08 13:15:43 by danicn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,8 @@ int	hit(t_hittables *t, t_ray r, double t_min, double t_max, t_hit_record *rec);
 void    add_sphere(t_hittables *world, t_sphere *sphere);
 void write_color(t_data *data, t_color pixel_color, int i, int j, int samples_per_pixel);
 double randomize();
+t_coord random_in_unit_sphere();
+double  clamp(double x, double min, double max);
+t_coord	random_unit_vector();
 
 #endif
